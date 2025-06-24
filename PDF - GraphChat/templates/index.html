@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphChat Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Upload Documents</h2>
+        <div class="upload-section">
+            <form id="uploadForm">
+                <input type="file" id="pdfFiles" name="pdf_files" accept=".pdf" multiple>
+                <button type="submit">Upload PDF</button>
+            </form>
+            <div id="uploadStatus" class="status-message"></div>
+        </div>
+
+        <button id="generateGraphBtn">Generate Graph in Neo4j</button>
+        <div id="graphStatus" class="status-message"></div>
+
+        <div class="uploaded-docs-section">
+            <h3>Uploaded Documents (<span id="uploadedCount">{{ uploaded_files | length }}</span>)</h3>
+            <ul id="uploadedFilesList">
+                {% for file in uploaded_files %}
+                    <li>{{ file.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1>GraphChat Assistant</h1>
+        <div class="chat-container" id="chatContainer">
+            </div>
+        <form class="chat-input-form" id="chatForm">
+            <input type="text" id="userQuestion" placeholder="Ask a question about your documents...">
+            <button type="submit" id="sendBtn">
+                <span id="sendText">Send</span>
+                <span id="spinner" class="loading-spinner" style="display: none;"></span>
+            </button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

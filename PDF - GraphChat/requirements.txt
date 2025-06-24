@@ -1,0 +1,7 @@
+Flask
+PyPDF2
+langchain
+langchain-core
+langchain-groq
+neo4j
+python-dotenv
